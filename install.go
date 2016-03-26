@@ -3,9 +3,10 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/libgit2/git2go"
 	"os"
 	"strings"
+
+	"github.com/libgit2/git2go"
 )
 
 const (
