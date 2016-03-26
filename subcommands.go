@@ -30,16 +30,7 @@ func ParseSubCommands(subCmdArgs []string) {
 }
 
 func getCommand(subCmdArgs []string) string {
-	if len(subCmdArgs) <= 2 {
-		fmt.Println("Insufficient args to liberty get")
-		os.Exit(2)
-	}
-
-	repoArg := subCmdArgs[2]
-	gitRepo, userProjDir := MakeGitPath(repoArg)
-	localRepo := CloneGitRepo(gitRepo, userProjDir)
-
-	return localRepo
+	return ExecuteGet(subCmdArgs)
 }
 
 func initCommand(subCmdArgs []string) {
