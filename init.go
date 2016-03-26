@@ -41,6 +41,8 @@ func PerformInit() {
 	generateLibertyFile(&libertyData)
 }
 
+// Generates the Liberty File with the given data
+// It saves it as "liberty.json" in the directory that the program was executed
 func generateLibertyFile(data *map[string]interface{}) {
 	jsonData, marshalErr := json.MarshalIndent(data, "", "\t")
 	if marshalErr != nil {
