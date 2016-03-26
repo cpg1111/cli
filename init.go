@@ -18,7 +18,8 @@ const (
 // It creates a liberty (JSON) file with these settings (if provided)
 func ExecuteInit(args []string) {
 	scanner := bufio.NewScanner(os.Stdin)
-	libertyData := make(map[string]interface{})
+	var libertyData LibertyFile
+	var projectData Project
 
 	fmt.Println("*** Welcome to Liberty! ***")
 	fmt.Println("We are going to ask you a few questions about your project.")
@@ -27,27 +28,25 @@ func ExecuteInit(args []string) {
 	shouldAskQuestions := requestPermission(scanner)
 
 	if shouldAskQuestions {
-		projectData := make(map[string]string)
 
 		fmt.Print("Project Title: ")
-		projectData["title"] = fetchInput(scanner)
+		projectData.Title = fetchInput(scanner)
 
 		fmt.Print("Project Description: ")
-		projectData["description"] = fetchInput(scanner)
+		projectData.Description = fetchInput(scanner)
 
 		fmt.Print("Author Name: ")
-		projectData["author"] = fetchInput(scanner)
+		projectData.Author = fetchInput(scanner)
 
-		libertyData["project"] = projectData
+		libertyData.Project = projectData
 	}
 
-	libertyData["dependencies"] = make(map[string]string)
-	generateLibertyFile(&libertyData)
+	GenerateLibertyFile(&libertyData)
 }
 
 // Generates the Liberty File with the given data
 // It saves it as "liberty.json" in the directory that the program was executed
-func generateLibertyFile(data *map[string]interface{}) {
+func GenerateLibertyFile(data *LibertyFile) {
 	jsonData, marshalErr := json.MarshalIndent(data, "", "\t")
 	if marshalErr != nil {
 		panic(marshalErr)
