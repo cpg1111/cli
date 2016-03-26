@@ -7,14 +7,19 @@ import (
 
 type LibertyFile struct {
 	Project         Project
-	Dependencies    map[string]string
-	DevDependencies map[string]string
+	Dependencies    []Dependency
+	DevDependencies []Dependency
 }
 
 type Project struct {
 	Title       string
 	Description string
 	Author      string
+}
+
+type Dependency struct {
+	Name    string
+	version string
 }
 
 func main() {
