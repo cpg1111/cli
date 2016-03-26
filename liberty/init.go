@@ -68,7 +68,7 @@ func requestPermission(scanner *bufio.Scanner) bool {
 	} else if containsString(nokayResponses, text) {
 		return false
 	} else {
-		fmt.Println("Please type yes or no and then press enter:")
+		fmt.Print("Please enter either [Y/N] to continue:")
 		return requestPermission(scanner)
 	}
 }
