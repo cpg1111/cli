@@ -16,7 +16,7 @@ const (
 
 // ExecuteInit asks the user a number of questions to setup the project
 // It creates a liberty (JSON) file with these settings (if provided)
-func ExecuteInit(args []interface{}) {
+func ExecuteInit(args []string) {
 	scanner := bufio.NewScanner(os.Stdin)
 	libertyData := make(map[string]interface{})
 

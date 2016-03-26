@@ -6,7 +6,8 @@ import (
 )
 
 const (
-	getCmd = "get"
+	getCmd  = "get"
+	initCmd = "init"
 )
 
 func SubCommandsExist() bool {
@@ -20,6 +21,8 @@ func ParseSubCommands(subCmdArgs []string) {
 	switch subCmdArgs[1] {
 	case getCmd:
 		getCommand(subCmdArgs)
+	case initCmd:
+		initCommand(subCmdArgs)
 	default:
 		fmt.Println("Liberty does not recognise this command")
 		os.Exit(2)
@@ -37,4 +40,8 @@ func getCommand(subCmdArgs []string) string {
 	localRepo := CloneGitRepo(gitRepo, userProjDir)
 
 	return localRepo
+}
+
+func initCommand(subCmdArgs []string) {
+	ExecuteInit(subCmdArgs)
 }
