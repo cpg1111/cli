@@ -3,18 +3,21 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/libgit2/git2go"
 	"os"
 	"strings"
+
+	"github.com/libgit2/git2go"
 )
 
 const (
 	libsDir         = "./_libs/"
 	githubFlag      = "github:"
-	githubUrlPrefix = "git://github.com/"
+	githubURLPrefix = "git://github.com/"
 	dotGitSuffix    = ".git"
 )
 
+// MakeGitPath creates a path to GitHub with a given string
+// It will convert github: into git://github.com/
 func MakeGitPath(rawPath string) (string, string) {
 	var pathBuffer bytes.Buffer
 	var userProjDir string
@@ -22,7 +25,7 @@ func MakeGitPath(rawPath string) (string, string) {
 	if strings.HasPrefix(rawPath, githubFlag) {
 		userProjDir = strings.TrimPrefix(rawPath, githubFlag)
 
-		pathBuffer.WriteString(githubUrlPrefix)
+		pathBuffer.WriteString(githubURLPrefix)
 		pathBuffer.WriteString(userProjDir)
 		pathBuffer.WriteString(dotGitSuffix)
 	}
@@ -30,6 +33,8 @@ func MakeGitPath(rawPath string) (string, string) {
 	return pathBuffer.String(), userProjDir
 }
 
+// CloneGitRepo will clone a git repository at a given path.
+// It will clone the project to the given destination
 func CloneGitRepo(gitPath string, dest string) string {
 	cloneOpts := &git.CloneOptions{}
 
