@@ -1,1 +1,1 @@
-go build -o liberty main.go
+go build -o liberty
