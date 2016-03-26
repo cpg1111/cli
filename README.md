@@ -31,16 +31,16 @@ Liberty is proud to offer:
 ### Example Configuration
 ```
 {
-	“liberate” :
+	“liberty” :
 	{
-		“name” : “Joey Clover”,
-		“title” : “Liberty”,
-		“desc” : “A simple, friendly package manager”
+		“author” : “Swagger Developer”,
+		“title” : “Dank Project”,
+		“desc” : “A dank, swagoo package manager”
 	},
 	“dependencies” :
 	{
-		“github:justjoey/liberty” : “1.3.0”,
-		“github:justjoey/cool-lib” : “1.4.0a”
+		“github:otherdeveloper/lib-dependency” : “1.3.0”,
+		“github:otherdeveloper/bin-dependency” : “1.4.0a”
 	}
 }
 ```
