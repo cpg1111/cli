@@ -1,4 +1,5 @@
-# Liberty CLI
+![Liberty CLI](http://i.imgur.com/RfRC17q.png)
+
 *liberty - the state of being free within society from oppressive restrictions imposed by authority on one's behaviour or political views*
 
 
