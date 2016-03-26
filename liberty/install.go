@@ -2,25 +2,43 @@ package main
 
 import (
 	"bytes"
+	"fmt"
+	"github.com/libgit2/git2go"
+	"os"
 	"strings"
 )
 
 const (
+	libsDir         = "./_libs/"
 	githubFlag      = "github:"
-	githubUrlPrefix = "https://github.com/"
+	githubUrlPrefix = "git://github.com/"
 	dotGitSuffix    = ".git"
 )
 
-func MakeGitPath(rawPath string) string {
+func MakeGitPath(rawPath string) (string, string) {
 	var pathBuffer bytes.Buffer
-
-	trimmedPath := strings.TrimPrefix(rawPath, githubFlag)
+	var userProjDir string
 
 	if strings.HasPrefix(rawPath, githubFlag) {
+		userProjDir = strings.TrimPrefix(rawPath, githubFlag)
+
 		pathBuffer.WriteString(githubUrlPrefix)
-		pathBuffer.WriteString(trimmedPath)
+		pathBuffer.WriteString(userProjDir)
 		pathBuffer.WriteString(dotGitSuffix)
 	}
 
-	return pathBuffer.String()
+	return pathBuffer.String(), userProjDir
+}
+
+func CloneGitRepo(gitPath string, dest string) string {
+	cloneOpts := &git.CloneOptions{}
+
+	destPath := libsDir + dest
+	repo, err := git.Clone(gitPath, destPath, cloneOpts)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	return repo.Path()
 }
