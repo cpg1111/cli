@@ -14,9 +14,9 @@ const (
 func MakeGitPath(rawPath string) string {
 	var pathBuffer bytes.Buffer
 
-	trimmedPath := strings.TrimPrefix(rawPath, githubFlag)
-
 	if strings.HasPrefix(rawPath, githubFlag) {
+		trimmedPath := strings.TrimPrefix(rawPath, githubFlag)
+
 		pathBuffer.WriteString(githubUrlPrefix)
 		pathBuffer.WriteString(trimmedPath)
 		pathBuffer.WriteString(dotGitSuffix)
