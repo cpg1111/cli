@@ -26,4 +26,6 @@ func TestGitClone(t *testing.T) {
 	if _, err := os.Stat(repoPath); err != nil {
 		t.FailNow()
 	}
+
+	os.RemoveAll("./_libs")
 }
