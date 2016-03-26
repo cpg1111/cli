@@ -14,9 +14,9 @@ const (
 	libertyFile = "./liberty.json"
 )
 
-// PerformInit asks the user a number of questions to setup the project
+// ExecuteInit asks the user a number of questions to setup the project
 // It creates a liberty (JSON) file with these settings (if provided)
-func PerformInit() {
+func ExecuteInit(args []interface{}) {
 	scanner := bufio.NewScanner(os.Stdin)
 	libertyData := make(map[string]interface{})
 
