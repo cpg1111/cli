@@ -9,6 +9,7 @@ import (
 )
 
 const (
+	libsDir         = "./_libs/"
 	githubFlag      = "github:"
 	githubUrlPrefix = "git://github.com/"
 	dotGitSuffix    = ".git"
@@ -32,7 +33,7 @@ func MakeGitPath(rawPath string) (string, string) {
 func CloneGitRepo(gitPath string, dest string) string {
 	cloneOpts := &git.CloneOptions{}
 
-	destPath := "./_libs/" + dest
+	destPath := libsDir + dest
 	repo, err := git.Clone(gitPath, destPath, cloneOpts)
 	if err != nil {
 		fmt.Println(err)
