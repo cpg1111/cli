@@ -5,6 +5,8 @@ import (
 	"os"
 )
 
+// ExecuteGet fetches a package from a remote source and places it in the _libs
+// folder.
 func ExecuteGet(args []string) string {
 	if len(args) <= 2 {
 		fmt.Println("Insufficient args to liberty get")
