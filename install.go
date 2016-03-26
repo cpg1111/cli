@@ -38,16 +38,15 @@ func CloneGitRepo(gitPath string, dest string) string {
 	repo := make(chan string)
 
 	go func() {
-		repoOutput, _ := git.Clone(gitPath, destPath, cloneOpts)
-		repo <- repoOutput
+		repoOutput, err := git.Clone(gitPath, destPath, cloneOpts)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		repo <- repoOutput.Path()
 	}()
 
-	repositoty := <-repo
+	repository := <-repo
 
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	return repository.Path()
+	return repository
 }
