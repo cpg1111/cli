@@ -34,11 +34,20 @@ func CloneGitRepo(gitPath string, dest string) string {
 	cloneOpts := &git.CloneOptions{}
 
 	destPath := libsDir + dest
-	repo, err := git.Clone(gitPath, destPath, cloneOpts)
+
+	repo := make(chan string)
+
+	go func() {
+		repoOutput, _ := git.Clone(gitPath, destPath, cloneOpts)
+		repo <- repoOutput
+	}()
+
+	repositoty := <-repo
+
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	return repo.Path()
+	return repository.Path()
 }
