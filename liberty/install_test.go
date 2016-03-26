@@ -20,6 +20,7 @@ func TestMakeGitPathForGithub(t *testing.T) {
 }
 
 func TestGitClone(t *testing.T) {
+	// Should find a better way to test this than running an actual clone
 	repoPath := CloneGitRepo("git://github.com/liberty-org/cli.git", "liberty-org/cli")
 
 	if _, err := os.Stat(repoPath); err != nil {
