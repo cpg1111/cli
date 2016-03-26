@@ -34,7 +34,18 @@ func CloneGitRepo(gitPath string, dest string) string {
 	cloneOpts := &git.CloneOptions{}
 
 	destPath := libsDir + dest
-	repo, err := git.Clone(gitPath, destPath, cloneOpts)
+
+	repo := make(chan string)
+
+	go func() {
+		repoOutput, err := git.Clone(gitPath, destPath, cloneOpts)
+		repo <- repoOutput
+	}()
+
+	repository := <-repo
+
+	fmt.Println(repository)
+
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
