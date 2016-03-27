@@ -10,10 +10,10 @@ import (
 func TestCreatingLibertyFileWithValidData(t *testing.T) {
 	defer cleanupInitTest()
 
-	data := make(map[string]interface{})
-	data["value"] = 123
+	var data LibertyData
+	data.Title = "test"
 
-	generateLibertyFile(&data)
+	data.generateLibertyFile()
 
 	if _, err := os.Stat("liberty.json"); os.IsNotExist(err) {
 		t.FailNow()
