@@ -8,6 +8,8 @@
 ### Note
 This project is currently a draft, it's not ready for use yet and depends heavily on those willing to contribute. If you're interested in helping, please don't hesitate.
 
+[![Build Status](https://travis-ci.org/liberty-org/cli.svg?branch=master)](https://travis-ci.org/liberty-org/cli)
+
 
 ### What is Liberty
 Liberty is a simple, friendly and powerful dependency manager for Javascript projects that has no single point of failure. We do this by avoiding a central list of packages and we go straight to the source. We encourage developers to think carefully about what dependencies they want in their projects. If you need a package and you want to ensure it still exists when the original author removes the code, you can fork your own project and use that. It is ultimately an npm alternative.
