@@ -7,7 +7,13 @@ sudo: required
 
 before_install:
   - go get -d github.com/libgit2/git2go
+  - cd $GOPATH/src/github.com/libgit2/git2go
+  - git checkout
+  - git submodule update --init
+  - make install
+  - cd $TRAVIS_BUILD_DIR
 
 
 script:
+  - go get
   - go test
