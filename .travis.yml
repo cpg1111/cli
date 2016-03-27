@@ -3,6 +3,11 @@ language: go
 go:
   - 1.6
 
+addons:
+  apt:
+    packages:
+      - libgit2
+
 install: go get
 
 script: go test ./
