@@ -2,7 +2,9 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strings"
 
@@ -15,6 +17,29 @@ const (
 	githubURLPrefix = "git://github.com/"
 	dotGitSuffix    = ".git"
 )
+
+func ExecuteInstall(subCmdArgs []string) {
+	libertyData := readLibertyData()
+
+	for _, dep := range libertyData.Dependencies {
+		path, userProjDir := MakeGitPath(dep.Name)
+		CloneGitRepo(path, userProjDir)
+	}
+}
+
+func readLibertyData() LibertyData {
+	libFile, err := ioutil.ReadFile("./liberty.json")
+	if err != nil {
+		fmt.Println("Could not find valid liberty file")
+		os.Exit(2)
+	}
+
+	var libertyData LibertyData
+	json.Unmarshal(libFile, &libertyData)
+
+	return libertyData
+
+}
 
 // MakeGitPath creates a path to GitHub with a given string
 // It will convert github: into git://github.com/
