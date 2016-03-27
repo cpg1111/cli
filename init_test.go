@@ -8,7 +8,7 @@ import (
 )
 
 func TestCreatingLibertyFileWithValidData(t *testing.T) {
-	defer cleanup()
+	defer cleanupInitTest()
 
 	data := make(map[string]interface{})
 	data["value"] = 123
@@ -42,6 +42,6 @@ func TestUserPromptForNo(t *testing.T) {
 	}
 }
 
-func cleanup() {
+func cleanupInitTest() {
 	os.Remove("liberty.json")
 }
