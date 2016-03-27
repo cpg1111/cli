@@ -16,7 +16,7 @@ Liberty is proud to offer:
 - A simple, convenient way to manage dependencies
 - No single point of failure
 - No namespace conflicts
-- 
+
 
 ### Installation
 We do not have a public binary for Liberty at the moment. You are welcome to download the source and run `./build.sh`. However, this will fail if you don't have the required dependencies. We are looking into having a script to download any pre-requisites you'll need to build the source.
