@@ -28,25 +28,23 @@ const (
 	rootDir     = "_libs"
 )
 
-var (
-	save    *bool
-	saveDev *bool
-)
-
 func main() {
 
-	save := flag.Bool("save", false, "Save to deps")
-	saveDev := flag.Bool("save-dev", false, "Save to dev deps")
+	var save bool
+	var saveDev bool
+
+	flag.BoolVar(&save, "save", false, "Save to deps")
+	flag.BoolVar(&saveDev, "save-dev", false, "Save to dev deps")
+
+	flag.Parse()
 
 	if !SubCommandsExist() {
 		fmt.Println("Insufficient number of subcommands supplied")
 		os.Exit(2)
 	}
 
-	flag.Parse()
+	fmt.Println(save)
+	fmt.Println(saveDev)
 
-	fmt.Println(*save)
-	fmt.Println(*saveDev)
-
-	ParseSubCommands(os.Args, *save, *saveDev)
+	ParseSubCommands(os.Args, save, saveDev)
 }
