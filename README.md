@@ -34,3 +34,6 @@ After a while, you'll need to update Liberty. If you execute `liberty update` yo
 
 #### get
 Use this to install single packages from the command line without first updating your liberty.json file
+
+#### remove
+Allows you to remove a lone package, specified by name via command line
