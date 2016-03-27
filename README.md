@@ -10,9 +10,7 @@ This project is currently a draft, it's not ready for use yet and depends heavil
 
 
 ### What is Liberty
-Liberty is a simple, friendly and powerful dependency manager for Javascript projects that has no single point of failure. We do this by avoiding a central list of packages and we go straight to the source. We encourage developers to think carefully about what dependencies they want in their projects. If you need a package and you want to ensure it still exists when the original author removes the code, you can fork your own project and use that.
-
-We are ultimately an npm alternative.
+Liberty is a simple, friendly and powerful dependency manager for Javascript projects that has no single point of failure. We do this by avoiding a central list of packages and we go straight to the source. We encourage developers to think carefully about what dependencies they want in their projects. If you need a package and you want to ensure it still exists when the original author removes the code, you can fork your own project and use that. It is ultimately an npm alternative.
 
 Liberty is proud to offer:
 - A simple, convenient way to manage dependencies
