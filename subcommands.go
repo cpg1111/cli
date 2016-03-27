@@ -8,6 +8,7 @@ import (
 const (
 	getCmd  = "get"
 	initCmd = "init"
+	listCmd = "list"
 )
 
 func SubCommandsExist() bool {
@@ -23,6 +24,8 @@ func ParseSubCommands(subCmdArgs []string) {
 		getCommand(subCmdArgs)
 	case initCmd:
 		initCommand(subCmdArgs)
+	case listCmd:
+		listCommand(subCmdArgs)
 	default:
 		fmt.Println("Liberty does not recognise this command")
 		os.Exit(2)
@@ -35,4 +38,8 @@ func getCommand(subCmdArgs []string) string {
 
 func initCommand(subCmdArgs []string) {
 	ExecuteInit(subCmdArgs)
+}
+
+func listCommand(subCmdArgs []string) {
+	ExecuteList(subCmdArgs)
 }
