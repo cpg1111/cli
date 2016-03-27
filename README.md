@@ -6,7 +6,7 @@
 
 
 ### Note
-This project is currently a proposal, it's not ready for use yet and depends heavily on those willing to contribute. If you're interested in helping, please don't hesitate.
+This project is currently a draft, it's not ready for use yet and depends heavily on those willing to contribute. If you're interested in helping, please don't hesitate.
 
 
 ### What is Liberty
