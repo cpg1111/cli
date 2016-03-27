@@ -31,3 +31,6 @@ Once you have created your liberty file and populated it with dependencies, you 
 
 #### update
 After a while, you'll need to update Liberty. If you execute `liberty update` you will be upgraded to the latest stable version of liberty.
+
+#### get
+Use this to install single packages from the command line without first updating your liberty.json file
