@@ -20,10 +20,10 @@ func SubCommandsExist() bool {
 	return true
 }
 
-func ParseSubCommands(subCmdArgs []string) {
+func ParseSubCommands(subCmdArgs []string, save bool, saveDev bool) {
 	switch subCmdArgs[1] {
 	case getCmd:
-		getCommand(subCmdArgs)
+		getCommand(subCmdArgs, save, saveDev)
 	case initCmd:
 		initCommand(subCmdArgs)
 	case listCmd:
@@ -34,8 +34,8 @@ func ParseSubCommands(subCmdArgs []string) {
 	}
 }
 
-func getCommand(subCmdArgs []string) string {
-	return ExecuteGet(subCmdArgs)
+func getCommand(subCmdArgs []string, save bool, saveDev bool) string {
+	return ExecuteGet(subCmdArgs, save, saveDev)
 }
 
 func initCommand(subCmdArgs []string) {
