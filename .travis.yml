@@ -12,6 +12,7 @@ before_install:
   - mkdir build && cd build
   - cmake .. -DCMAKE_INSTALL_PREFIX=../_install -DBUILD_CLAR=OFF
   - cmake --build . --target install
+  - cd $TRAVIS_BUILD_DIR
 
 
 script:
