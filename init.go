@@ -49,7 +49,7 @@ func generateLibertyFile(data *map[string]interface{}) {
 		panic(marshalErr)
 	}
 
-	if err := ioutil.WriteFile(libertyFile, jsonData, 0644); err != nil {
+	if err := ioutil.WriteFile(libertyFile, jsonData, os.ModePerm); err != nil {
 		panic(err)
 	}
 }
