@@ -10,10 +10,6 @@ import (
 	"strings"
 )
 
-const (
-	libertyFile = "./liberty.json"
-)
-
 // ExecuteInit asks the user a number of questions to setup the project
 // It creates a liberty (JSON) file with these settings (if provided)
 func ExecuteInit(args []string) {

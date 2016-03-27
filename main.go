@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 )
@@ -22,13 +23,16 @@ type Dependency struct {
 	version string
 }
 
-func main() {
-	fmt.Println("Hello, Liberty!")
+const (
+	libertyFile = "liberty.json"
+	rootDir     = "_libs"
+)
 
+func main() {
 	if !SubCommandsExist() {
 		fmt.Println("Insufficient number of subcommands supplied")
 		os.Exit(2)
 	}
 
-	ParseSubCommands(os.Args)
+	ParseSubCommands(os.Args, flags)
 }
