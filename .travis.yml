@@ -6,15 +6,8 @@ go:
 sudo: required
 
 before_install:
-  - cd ~
-  - git clone --depth=1 -b maint/v0.22 https://github.com/libgit2/libgit2.git
-  - cd libgit2/
-  - mkdir build && cd build
-  - cmake .. -DCMAKE_INSTALL_PREFIX=../_install -DBUILD_CLAR=OFF
-  - cmake --build . --target install
-  - cd $TRAVIS_BUILD_DIR
+  - go get -d github.com/libgit2/git2go
 
 
 script:
-  - go get
   - go test
