@@ -3,4 +3,17 @@ language: go
 go:
   - 1.6
 
-script: go test ./
+sudo: required
+
+before_install:
+  - go get -d github.com/libgit2/git2go
+  - cd $GOPATH/src/github.com/libgit2/git2go
+  - git checkout next
+  - git submodule update --init
+  - make install
+  - go install
+  - cd $TRAVIS_BUILD_DIR
+
+
+script:
+  - go test
