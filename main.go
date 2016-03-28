@@ -6,7 +6,6 @@ import (
 )
 
 const (
-	libertyFile = "liberty.json"
 	rootDir = "_libs"
 )
 

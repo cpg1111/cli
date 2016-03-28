@@ -2,31 +2,19 @@ package main
 
 import (
 	"bufio"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/liberty-org/cli/utils"
 )
-
-type LibertyData struct {
-	Title        string
-	Description  string
-	Author       string
-	Dependencies []Dependency
-}
-
-type Dependency struct {
-	Name    string
-	Version string
-}
 
 // ExecuteInit asks the user a number of questions to setup the project
 // It creates a liberty (JSON) file with these settings (if provided)
 func ExecuteInit(args []string) {
 	scanner := bufio.NewScanner(os.Stdin)
-	var libertyData LibertyData
+	var libertyData utils.LibertyData
 
 	fmt.Println("*** Welcome to Liberty! ***")
 	fmt.Println("We are going to ask you a few questions about your project.")
@@ -44,23 +32,10 @@ func ExecuteInit(args []string) {
 		fmt.Print("Author Name: ")
 		libertyData.Author = fetchInput(scanner)
 
-		libertyData.Dependencies = make([]Dependency, 1)
+		libertyData.Dependencies = make([]utils.Dependency, 1)
 	}
 
 	libertyData.GenerateLibertyFile()
-}
-
-// Generates the Liberty File with the given data
-// It saves it as "liberty.json" in the directory that the program was executed
-func (libertyData *LibertyData) GenerateLibertyFile() {
-	jsonData, marshalErr := json.MarshalIndent(libertyData, "", "\t")
-	if marshalErr != nil {
-		panic(marshalErr)
-	}
-
-	if err := ioutil.WriteFile(libertyFile, jsonData, os.ModePerm); err != nil {
-		panic(err)
-	}
 }
 
 // Fetches input and handles any errors

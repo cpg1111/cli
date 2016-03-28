@@ -3,6 +3,8 @@ package main
 import (
 	"os"
 	"testing"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 func TestRemoveDeletesPackage(t *testing.T) {
@@ -10,9 +12,9 @@ func TestRemoveDeletesPackage(t *testing.T) {
 
 	args := []string{"liberty", "remove", "github:testA/testB"}
 
-	libertyData := &LibertyData{Title: "TestRemoveDeletesPackage"}
-	testDep := &Dependency{Name: "github:dont/delete"}
-	dep := &Dependency{Name: "github:testA/testB"}
+	libertyData := &utils.LibertyData{Title: "TestRemoveDeletesPackage"}
+	testDep := &utils.Dependency{Name: "github:dont/delete"}
+	dep := &utils.Dependency{Name: "github:testA/testB"}
 
 	libertyData.Dependencies = append(libertyData.Dependencies, *dep)
 	libertyData.Dependencies = append(libertyData.Dependencies, *testDep)

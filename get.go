@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 // ExecuteGet fetches a package from a remote source and places it in the _libs
@@ -14,11 +16,11 @@ func ExecuteGet(args []string) string {
 	}
 
 	repoArg := args[2]
-	gitRepo, userProjDir := MakeGitPath(repoArg)
-	localRepo := CloneGitRepo(gitRepo, userProjDir)
+	gitRepo, userProjDir := utils.MakeGitPath(repoArg)
+	localRepo := utils.CloneGitRepo(gitRepo, userProjDir)
 
-	libertyData := ReadLibertyData()
-	newDep := &Dependency{Name: repoArg}
+	libertyData := utils.ReadLibertyData()
+	newDep := &utils.Dependency{Name: repoArg}
 	libertyData.Dependencies = append(libertyData.Dependencies, *newDep)
 
 	libertyData.GenerateLibertyFile()

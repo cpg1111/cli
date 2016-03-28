@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 func ExecuteRemove(subCmdArgs []string) {
@@ -17,10 +19,10 @@ func ExecuteRemove(subCmdArgs []string) {
 }
 
 func removePackage(packageString string) {
-	_, packagePath := MakeGitPath(packageString)
+	_, packagePath := utils.MakeGitPath(packageString)
 	splitPath := strings.SplitAfter(packagePath, "/")
 
-	libertyData := ReadLibertyData()
+	libertyData := utils.ReadLibertyData()
 
 	for i, elem := range libertyData.Dependencies {
 		if elem.Name == packageString {
@@ -30,5 +32,5 @@ func removePackage(packageString string) {
 
 	libertyData.GenerateLibertyFile()
 
-	os.RemoveAll(libsDir + splitPath[0])
+	os.RemoveAll(utils.LibsDir + splitPath[0])
 }
