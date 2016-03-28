@@ -17,5 +17,11 @@ func ExecuteGet(args []string) string {
 	gitRepo, userProjDir := MakeGitPath(repoArg)
 	localRepo := CloneGitRepo(gitRepo, userProjDir)
 
+	libertyData := ReadLibertyData()
+	newDep := &Dependency{Name: repoArg}
+	libertyData.Dependencies = append(libertyData.Dependencies, *newDep)
+
+	libertyData.GenerateLibertyFile()
+
 	return localRepo
 }
