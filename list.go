@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 // ExecuteList will print the entire tree of dependencies to the console
@@ -21,7 +23,7 @@ func trackFolder(path string) string {
 		log.Fatal(err)
 	}
 
-	if _, err := os.Stat(path + "/" + libertyFile); err == nil {
+	if _, err := os.Stat(path + "/" + utils.LibertyFile); err == nil {
 		return removeRootPrefix(path) + "\n"
 	}
 

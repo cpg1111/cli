@@ -22,7 +22,7 @@ func removePackage(packageString string) {
 	_, packagePath := utils.MakeGitPath(packageString)
 	splitPath := strings.SplitAfter(packagePath, "/")
 
-	libertyData := ReadLibertyData()
+	libertyData := utils.ReadLibertyData()
 
 	for i, elem := range libertyData.Dependencies {
 		if elem.Name == packageString {

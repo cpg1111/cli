@@ -4,6 +4,8 @@ import (
 	"io/ioutil"
 	"os"
 	"testing"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 func TestThatListWorksForValidTree(t *testing.T) {
@@ -37,7 +39,7 @@ func createMockPackage(packageAlias string, addLibertyFile bool) error {
 
 	if addLibertyFile {
 		var libertyData []byte
-		if fileErr := ioutil.WriteFile(packageFullPath+libertyFile, libertyData, os.ModePerm); fileErr != nil {
+		if fileErr := ioutil.WriteFile(packageFullPath+utils.LibertyFile, libertyData, os.ModePerm); fileErr != nil {
 			return fileErr
 		}
 	}

@@ -5,12 +5,14 @@ import (
 	"bytes"
 	"os"
 	"testing"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 func TestCreatingLibertyFileWithValidData(t *testing.T) {
 	defer cleanupInitTest()
 
-	var data LibertyData
+	var data utils.LibertyData
 	data.Title = "test"
 
 	data.GenerateLibertyFile()
