@@ -11,7 +11,7 @@ const (
 	listCmd    = "list"
 	installCmd = "install"
 	removeCmd  = "remove"
-	helpCmd		 = "help"
+	helpCmd    = "help"
 )
 
 func SubCommandsExist() bool {
