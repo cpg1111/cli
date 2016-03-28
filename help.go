@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"strings"
+)
+
 type Argument struct {
 	Name  string
 	Usage string
@@ -7,7 +12,7 @@ type Argument struct {
 
 type Arguments []Argument
 
-func GetHelpArguments() Arguments {
+func getHelpArguments() Arguments {
 	var arguments = Arguments{
 		Argument{
 			Name: "liberty init",
@@ -31,4 +36,13 @@ func GetHelpArguments() Arguments {
 		},
 	}
 	return arguments
+}
+
+func PrintHelpArgs() {
+	for _, command := range getHelpArguments() {
+		fmt.Println()
+		fmt.Printf("---%s---", command.Name)
+		fmt.Println()
+		fmt.Println(strings.TrimSpace(command.Usage))
+	}
 }
