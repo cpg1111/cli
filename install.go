@@ -38,7 +38,6 @@ func ReadLibertyData() LibertyData {
 	json.Unmarshal(libFile, &libertyData)
 
 	return libertyData
-
 }
 
 // MakeGitPath creates a path to GitHub with a given string
