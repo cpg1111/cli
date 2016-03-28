@@ -13,7 +13,7 @@ func TestCreatingLibertyFileWithValidData(t *testing.T) {
 	var data LibertyData
 	data.Title = "test"
 
-	data.generateLibertyFile()
+	data.GenerateLibertyFile()
 
 	if _, err := os.Stat("liberty.json"); os.IsNotExist(err) {
 		t.FailNow()

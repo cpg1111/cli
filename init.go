@@ -47,12 +47,12 @@ func ExecuteInit(args []string) {
 		libertyData.Dependencies = make([]Dependency, 1)
 	}
 
-	libertyData.generateLibertyFile()
+	libertyData.GenerateLibertyFile()
 }
 
 // Generates the Liberty File with the given data
 // It saves it as "liberty.json" in the directory that the program was executed
-func (libertyData *LibertyData) generateLibertyFile() {
+func (libertyData *LibertyData) GenerateLibertyFile() {
 	jsonData, marshalErr := json.MarshalIndent(libertyData, "", "\t")
 	if marshalErr != nil {
 		panic(marshalErr)

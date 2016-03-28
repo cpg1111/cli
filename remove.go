@@ -13,13 +13,22 @@ func ExecuteRemove(subCmdArgs []string) {
 	}
 
 	pathArg := subCmdArgs[2]
-	_, userProjDir := MakeGitPath(pathArg)
-
-	removePackage(userProjDir)
+	removePackage(pathArg)
 }
 
-func removePackage(packagePath string) {
+func removePackage(packageString string) {
+	_, packagePath := MakeGitPath(packageString)
 	splitPath := strings.SplitAfter(packagePath, "/")
+
+	libertyData := ReadLibertyData()
+
+	for i, elem := range libertyData.Dependencies {
+		if elem.Name == packageString {
+			libertyData.Dependencies = append(libertyData.Dependencies[:i], libertyData.Dependencies[i+1:]...)
+		}
+	}
+
+	libertyData.GenerateLibertyFile()
 
 	os.RemoveAll(libsDir + splitPath[0])
 }

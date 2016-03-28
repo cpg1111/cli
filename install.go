@@ -19,7 +19,7 @@ const (
 )
 
 func ExecuteInstall(subCmdArgs []string) {
-	libertyData := readLibertyData()
+	libertyData := ReadLibertyData()
 
 	for _, dep := range libertyData.Dependencies {
 		path, userProjDir := MakeGitPath(dep.Name)
@@ -27,7 +27,7 @@ func ExecuteInstall(subCmdArgs []string) {
 	}
 }
 
-func readLibertyData() LibertyData {
+func ReadLibertyData() LibertyData {
 	libFile, err := ioutil.ReadFile("./liberty.json")
 	if err != nil {
 		fmt.Println("Could not find valid liberty file")
@@ -38,7 +38,6 @@ func readLibertyData() LibertyData {
 	json.Unmarshal(libFile, &libertyData)
 
 	return libertyData
-
 }
 
 // MakeGitPath creates a path to GitHub with a given string
