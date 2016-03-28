@@ -38,7 +38,7 @@ func getHelpArguments() Arguments {
 	return arguments
 }
 
-func PrintHelpArgs() {
+func ExecuteHelp(subCmdArgs []string) {
 	for _, command := range getHelpArguments() {
 		fmt.Println()
 		fmt.Printf("---%s---", command.Name)

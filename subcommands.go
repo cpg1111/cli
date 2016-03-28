@@ -11,6 +11,7 @@ const (
 	listCmd    = "list"
 	installCmd = "install"
 	removeCmd  = "remove"
+	helpCmd		 = "help"
 )
 
 func SubCommandsExist() bool {
@@ -22,6 +23,8 @@ func SubCommandsExist() bool {
 
 func ParseSubCommands(subCmdArgs []string) {
 	switch subCmdArgs[1] {
+	case helpCmd:
+		helpCommand(subCmdArgs)
 	case getCmd:
 		getCommand(subCmdArgs)
 	case initCmd:
@@ -56,4 +59,8 @@ func installCommand(subCmdArgs []string) {
 
 func removeCommand(subCmdArgs []string) {
 	ExecuteRemove(subCmdArgs)
+}
+
+func helpCommand(subCmdArgs []string) {
+	ExecuteHelp(subCmdArgs)
 }
