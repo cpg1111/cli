@@ -61,3 +61,17 @@ func CloneGitRepo(gitPath string, dest string) string {
 
 	return repository
 }
+
+func SetRepoVersion(packagePath string, packageVersion string) {
+	repo, err := git.OpenRepository(packagePath)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	err = repo.SetHead(packageVersion)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
