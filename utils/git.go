@@ -9,6 +9,13 @@ import (
 	"github.com/libgit2/git2go"
 )
 
+type Repo struct {
+	providerFlag string
+	urlPrefix    string
+}
+
+type RepositoryList []Repo
+
 const (
 	LibsDir         = "./_libs/"
 	githubFlag      = "github:"
