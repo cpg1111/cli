@@ -16,6 +16,7 @@ type Repository struct {
 
 const (
 	LibsDir      = "./_libs/"
+	tagsPrefix   = "tags/"
 	dotGitSuffix = ".git"
 )
 
@@ -74,7 +75,8 @@ func SetRepoVersion(packagePath string, packageVersion string) {
 		os.Exit(1)
 	}
 
-	err = repo.SetHead(packageVersion)
+	taggedVersion := tagsPrefix + packageVersion
+	err = repo.SetHead(taggedVersion)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
