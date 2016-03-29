@@ -15,10 +15,8 @@ type Repository struct {
 }
 
 const (
-	LibsDir         = "./_libs/"
-	githubFlag      = "github:"
-	githubURLPrefix = "git://github.com/"
-	dotGitSuffix    = ".git"
+	LibsDir      = "./_libs/"
+	dotGitSuffix = ".git"
 )
 
 // MakeGitPath creates a path to GitHub with a given string
