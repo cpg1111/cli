@@ -62,6 +62,11 @@ func CloneGitRepo(gitPath string, dest string) string {
 	return repository
 }
 
+func MakePathFromPackage(packageName string) string {
+	path := LibsDir + packageName
+	return path
+}
+
 func SetRepoVersion(packagePath string, packageVersion string) {
 	repo, err := git.OpenRepository(packagePath)
 	if err != nil {
