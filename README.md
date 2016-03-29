@@ -39,3 +39,6 @@ Use this to install single packages from the command line without first updating
 
 #### remove
 Allows you to remove a lone package, specified by name via command line
+
+#### help
+Emit a summary of available subcommands and their purpose
