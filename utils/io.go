@@ -23,6 +23,19 @@ type Dependency struct {
 	Version string
 }
 
+func ReadRepoDefinitions() []Repository {
+	repoDefFile, err := ioutil.ReadFile("./repo_defs.json")
+	if err != nil {
+		fmt.Println("Could not find valid repository definitions")
+		os.Exit(2)
+	}
+
+	var repoDef []Repository
+	json.Unmarshal(repoDefFile, &repoDef)
+
+	return repoDef
+}
+
 func ReadLibertyData() LibertyData {
 	libFile, err := ioutil.ReadFile("./liberty.json")
 	if err != nil {

@@ -9,11 +9,14 @@ import (
 	"github.com/libgit2/git2go"
 )
 
+type Repository struct {
+	UrlPrefix    string
+	ProviderFlag string
+}
+
 const (
-	LibsDir         = "./_libs/"
-	githubFlag      = "github:"
-	githubURLPrefix = "git://github.com/"
-	dotGitSuffix    = ".git"
+	LibsDir      = "./_libs/"
+	dotGitSuffix = ".git"
 )
 
 // MakeGitPath creates a path to GitHub with a given string
@@ -22,14 +25,17 @@ func MakeGitPath(rawPath string) (string, string) {
 	var pathBuffer bytes.Buffer
 	var userProjDir string
 
-	if strings.HasPrefix(rawPath, githubFlag) {
-		userProjDir = strings.TrimPrefix(rawPath, githubFlag)
+	repoDefs := ReadRepoDefinitions()
 
-		pathBuffer.WriteString(githubURLPrefix)
-		pathBuffer.WriteString(userProjDir)
-		pathBuffer.WriteString(dotGitSuffix)
+	for _, repo := range repoDefs {
+		if strings.HasPrefix(rawPath, repo.ProviderFlag) {
+			userProjDir = strings.TrimPrefix(rawPath, repo.ProviderFlag)
+
+			pathBuffer.WriteString(repo.UrlPrefix)
+			pathBuffer.WriteString(userProjDir)
+			pathBuffer.WriteString(dotGitSuffix)
+		}
 	}
-
 	return pathBuffer.String(), userProjDir
 }
 
