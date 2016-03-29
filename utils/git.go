@@ -9,12 +9,10 @@ import (
 	"github.com/libgit2/git2go"
 )
 
-type Repo struct {
-	providerFlag string
-	urlPrefix    string
+type Repository struct {
+	UrlPrefix    string
+	ProviderFlag string
 }
-
-type RepositoryList []Repo
 
 const (
 	LibsDir         = "./_libs/"
@@ -29,14 +27,17 @@ func MakeGitPath(rawPath string) (string, string) {
 	var pathBuffer bytes.Buffer
 	var userProjDir string
 
-	if strings.HasPrefix(rawPath, githubFlag) {
-		userProjDir = strings.TrimPrefix(rawPath, githubFlag)
+	repoDefs := ReadRepoDefinitions()
 
-		pathBuffer.WriteString(githubURLPrefix)
-		pathBuffer.WriteString(userProjDir)
-		pathBuffer.WriteString(dotGitSuffix)
+	for _, repo := range repoDefs {
+		if strings.HasPrefix(rawPath, repo.ProviderFlag) {
+			userProjDir = strings.TrimPrefix(rawPath, repo.ProviderFlag)
+
+			pathBuffer.WriteString(repo.UrlPrefix)
+			pathBuffer.WriteString(userProjDir)
+			pathBuffer.WriteString(dotGitSuffix)
+		}
 	}
-
 	return pathBuffer.String(), userProjDir
 }
 
