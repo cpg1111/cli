@@ -1,0 +1,6 @@
+[
+  {
+    "UrlPrefix": "git://github.com/",
+    "ProviderFlag": "github:"
+  }
+]
