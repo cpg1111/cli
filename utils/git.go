@@ -75,8 +75,13 @@ func SetRepoVersion(packagePath string, packageVersion string) {
 		os.Exit(1)
 	}
 
-	taggedVersion := tagsPrefix + packageVersion
-	err = repo.SetHead(taggedVersion)
+	ref, err := repo.References.Dwim(packageVersion)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	err = repo.SetHead(ref.Name())
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
