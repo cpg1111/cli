@@ -38,6 +38,10 @@ func getHelpArguments() Arguments {
 			Name:  "liberty get",
 			Usage: "Download and install a single package to your _libs directory and update your liberty file.",
 		},
+		Argument{
+			Name:  "liberty remove",
+			Usage: "Delete a single package from your _libs directory and update your liberty file.",
+		},
 	}
 	return arguments
 }
