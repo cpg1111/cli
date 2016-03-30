@@ -13,8 +13,10 @@ func ExecuteSet(args []string) {
 		os.Exit(2)
 	}
 
-	packageName := args[2]
+	packageNameFull := args[2]
+	packageName := utils.TrimProviderPrefix(args[2])
 	packageVersion := args[3]
 	repoPath := utils.MakePathFromPackage(packageName)
 	utils.SetRepoVersion(repoPath, packageVersion)
+	utils.WritePackageVersion(packageNameFull, packageVersion)
 }
