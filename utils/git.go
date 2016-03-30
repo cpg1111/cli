@@ -20,6 +20,19 @@ const (
 	dotGitSuffix = ".git"
 )
 
+func TrimProviderPrefix(packageName string) string {
+	repoDefs := ReadRepoDefinitions()
+
+	var trimmedPackage string
+	for _, repo := range repoDefs {
+		if strings.HasPrefix(packageName, repo.ProviderFlag) {
+			trimmedPackage = strings.TrimPrefix(packageName, repo.ProviderFlag)
+		}
+	}
+
+	return trimmedPackage
+}
+
 // MakeGitPath creates a path to GitHub with a given string
 // It will convert github: into git://github.com/
 func MakeGitPath(rawPath string) (string, string) {

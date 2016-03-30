@@ -61,3 +61,15 @@ func (libertyData *LibertyData) GenerateLibertyFile() {
 		panic(err)
 	}
 }
+
+func WritePackageVersion(packageName string, version string) {
+	libertyData := ReadLibertyData()
+
+	for i, dep := range libertyData.Dependencies {
+		if dep.Name == packageName {
+			libertyData.Dependencies[i].Version = version
+		}
+	}
+
+	libertyData.GenerateLibertyFile()
+}
