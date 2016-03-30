@@ -43,3 +43,6 @@ Allows you to remove a lone package, specified by name via command line
 
 #### help
 Emit a summary of available subcommands and their purpose
+
+#### set
+Set a package to a specific version, denoted by a git tag
