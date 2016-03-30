@@ -7,7 +7,7 @@ import (
 	"github.com/liberty-org/cli/utils"
 )
 
-func ExecuteSetver(args []string) {
+func ExecuteSet(args []string) {
 	if len(args) <= 3 {
 		fmt.Println("Insufficient args to liberty setver")
 		os.Exit(2)
