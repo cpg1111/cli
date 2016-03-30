@@ -16,6 +16,7 @@ type Repository struct {
 
 const (
 	LibsDir      = "./_libs/"
+	tagsPrefix   = "tags/"
 	dotGitSuffix = ".git"
 )
 
@@ -60,4 +61,29 @@ func CloneGitRepo(gitPath string, dest string) string {
 	repository := <-repo
 
 	return repository
+}
+
+func MakePathFromPackage(packageName string) string {
+	path := LibsDir + packageName
+	return path
+}
+
+func SetRepoVersion(packagePath string, packageVersion string) {
+	repo, err := git.OpenRepository(packagePath)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	ref, err := repo.References.Dwim(packageVersion)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	err = repo.SetHead(ref.Name())
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }

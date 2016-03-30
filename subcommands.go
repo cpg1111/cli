@@ -12,6 +12,7 @@ const (
 	installCmd = "install"
 	removeCmd  = "remove"
 	helpCmd    = "help"
+	setCmd     = "set"
 )
 
 func SubCommandsExist() bool {
@@ -35,6 +36,8 @@ func ParseSubCommands(subCmdArgs []string) {
 		installCommand(subCmdArgs)
 	case removeCmd:
 		removeCommand(subCmdArgs)
+	case setCmd:
+		setCommand(subCmdArgs)
 	default:
 		fmt.Println("Liberty does not recognise this command")
 		os.Exit(2)
@@ -63,4 +66,8 @@ func removeCommand(subCmdArgs []string) {
 
 func helpCommand(subCmdArgs []string) {
 	ExecuteHelp(subCmdArgs)
+}
+
+func setCommand(subCmdArgs []string) {
+	ExecuteSet(subCmdArgs)
 }
