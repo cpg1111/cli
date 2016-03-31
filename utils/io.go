@@ -9,6 +9,7 @@ import (
 
 const (
 	LibertyFile = "liberty.json"
+	RepoDefFile = "repo_defs.json"
 )
 
 type LibertyData struct {
@@ -34,7 +35,7 @@ func pathInCwd(relativePath string) string {
 }
 
 func ReadRepoDefinitions() []Repository {
-	repoDefFile, err := ioutil.ReadFile(pathInCwd("repo_defs.json")) //Change to be a global file
+	repoDefFile, err := ioutil.ReadFile(pathInCwd(RepoDefFile)) //Change to be a global file
 	if err != nil {
 		fmt.Println("Could not find valid repository definitions")
 		os.Exit(2)
@@ -47,7 +48,7 @@ func ReadRepoDefinitions() []Repository {
 }
 
 func ReadLibertyData() LibertyData {
-	libFile, err := ioutil.ReadFile(pathInCwd("liberty.json"))
+	libFile, err := ioutil.ReadFile(pathInCwd(LibertyFile))
 	if err != nil {
 		fmt.Println("Could not find valid liberty file")
 		os.Exit(2)
