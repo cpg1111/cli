@@ -2,9 +2,10 @@ package utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 const (
@@ -26,7 +27,7 @@ type Dependency struct {
 func ReadRepoDefinitions() []Repository {
 	repoDefFile, err := ioutil.ReadFile("./repo_defs.json")
 	if err != nil {
-		fmt.Println("Could not find valid repository definitions")
+		utils.PrintUrgent("Could not find valid repository definitions")
 		os.Exit(2)
 	}
 
@@ -39,7 +40,7 @@ func ReadRepoDefinitions() []Repository {
 func ReadLibertyData() LibertyData {
 	libFile, err := ioutil.ReadFile("./liberty.json")
 	if err != nil {
-		fmt.Println("Could not find valid liberty file")
+		utils.PrintUrgent("Could not find valid liberty file")
 		os.Exit(2)
 	}
 

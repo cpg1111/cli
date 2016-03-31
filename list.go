@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 
 	"github.com/liberty-org/cli/utils"
@@ -12,7 +10,7 @@ import (
 // ExecuteList will print the entire tree of dependencies to the console
 func ExecuteList(args []string) {
 	dependencies := trackFolder(rootDir)
-	fmt.Printf("%v", dependencies)
+	utils.PrintInfo(dependencies)
 }
 
 func trackFolder(path string) string {
@@ -20,7 +18,8 @@ func trackFolder(path string) string {
 	fullPath := ""
 
 	if err != nil {
-		log.Fatal(err)
+		utils.PrintUrgent("Could not find any dependencies")
+		os.Exit(2)
 	}
 
 	if _, err := os.Stat(path + "/" + utils.LibertyFile); err == nil {

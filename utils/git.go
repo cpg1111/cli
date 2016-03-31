@@ -2,10 +2,10 @@ package utils
 
 import (
 	"bytes"
-	"fmt"
 	"os"
 	"strings"
 
+	"github.com/liberty-org/cli/utils"
 	"github.com/libgit2/git2go"
 )
 
@@ -65,7 +65,7 @@ func CloneGitRepo(gitPath string, dest string) string {
 	go func() {
 		repoOutput, err := git.Clone(gitPath, destPath, cloneOpts)
 		if err != nil {
-			fmt.Println(err)
+			utils.PrintUrgent(err.Error())
 			os.Exit(1)
 		}
 		repo <- repoOutput.Path()
@@ -84,19 +84,19 @@ func MakePathFromPackage(packageName string) string {
 func SetRepoVersion(packagePath string, packageVersion string) {
 	repo, err := git.OpenRepository(packagePath)
 	if err != nil {
-		fmt.Println(err)
+		utils.PrintUrgent(err.Error())
 		os.Exit(1)
 	}
 
 	ref, err := repo.References.Dwim(packageVersion)
 	if err != nil {
-		fmt.Println(err)
+		utils.PrintUrgent(err.Error())
 		os.Exit(1)
 	}
 
 	err = repo.SetHead(ref.Name())
 	if err != nil {
-		fmt.Println(err)
+		utils.PrintUrgent(err.Error())
 		os.Exit(1)
 	}
 }

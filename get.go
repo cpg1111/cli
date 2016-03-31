@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/liberty-org/cli/utils"
@@ -11,7 +10,7 @@ import (
 // folder.
 func ExecuteGet(args []string) string {
 	if len(args) <= 2 {
-		fmt.Println("Insufficient args to liberty get")
+		utils.PrintUrgent("Insufficient args to liberty get")
 		os.Exit(2)
 	}
 
