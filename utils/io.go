@@ -23,8 +23,18 @@ type Dependency struct {
 	Version string
 }
 
+func pathInCwd(relativePath string) string {
+	cwd, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	return cwd + "/" + relativePath
+}
+
 func ReadRepoDefinitions() []Repository {
-	repoDefFile, err := ioutil.ReadFile("./repo_defs.json")
+	repoDefFile, err := ioutil.ReadFile(pathInCwd("repo_defs.json")) //Change to be a global file
 	if err != nil {
 		fmt.Println("Could not find valid repository definitions")
 		os.Exit(2)
@@ -37,7 +47,7 @@ func ReadRepoDefinitions() []Repository {
 }
 
 func ReadLibertyData() LibertyData {
-	libFile, err := ioutil.ReadFile("./liberty.json")
+	libFile, err := ioutil.ReadFile(pathInCwd("liberty.json"))
 	if err != nil {
 		fmt.Println("Could not find valid liberty file")
 		os.Exit(2)
