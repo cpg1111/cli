@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 type Argument struct {
@@ -49,7 +51,7 @@ func getHelpArguments() Arguments {
 func ExecuteHelp(subCmdArgs []string) {
 	for _, command := range getHelpArguments() {
 		fmt.Println()
-		fmt.Printf("---%s---", command.Name)
+		utils.PrintInfof("---%s---", command.Name)
 		fmt.Println()
 		fmt.Println(strings.TrimSpace(command.Usage))
 	}

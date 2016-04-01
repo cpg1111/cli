@@ -18,8 +18,7 @@ func trackFolder(path string) string {
 	fullPath := ""
 
 	if err != nil {
-		utils.PrintUrgent("Could not find any dependencies")
-		os.Exit(2)
+		utils.PrintErrorThenExit("Could not find any dependencies", 2)
 	}
 
 	if _, err := os.Stat(path + "/" + utils.LibertyFile); err == nil {

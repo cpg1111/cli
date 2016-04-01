@@ -15,8 +15,7 @@ func main() {
 	utils.PrintHeader()
 
 	if !SubCommandsExist() {
-		utils.PrintUrgent("Insufficient number of subcommands supplied")
-		os.Exit(2)
+		utils.PrintErrorThenExit("Insufficient number of subcommands supplied", 2)
 	}
 
 	ParseSubCommands(os.Args)

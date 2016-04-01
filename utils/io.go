@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
-
-	"github.com/liberty-org/cli/utils"
 )
 
 const (
@@ -27,8 +25,7 @@ type Dependency struct {
 func ReadRepoDefinitions() []Repository {
 	repoDefFile, err := ioutil.ReadFile("./repo_defs.json")
 	if err != nil {
-		utils.PrintUrgent("Could not find valid repository definitions")
-		os.Exit(2)
+		PrintErrorThenExit("Could not find valid repository definitions", 2)
 	}
 
 	var repoDef []Repository
@@ -40,8 +37,7 @@ func ReadRepoDefinitions() []Repository {
 func ReadLibertyData() LibertyData {
 	libFile, err := ioutil.ReadFile("./liberty.json")
 	if err != nil {
-		utils.PrintUrgent("Could not find valid liberty file")
-		os.Exit(2)
+		PrintErrorThenExit("There was a problem reading your Liberty file", 2)
 	}
 
 	var libertyData LibertyData
@@ -55,11 +51,11 @@ func ReadLibertyData() LibertyData {
 func (libertyData *LibertyData) GenerateLibertyFile() {
 	jsonData, marshalErr := json.MarshalIndent(libertyData, "", "\t")
 	if marshalErr != nil {
-		panic(marshalErr)
+		PrintErrorThenExit(marshalErr.Error(), 2)
 	}
 
 	if err := ioutil.WriteFile(LibertyFile, jsonData, os.ModePerm); err != nil {
-		panic(err)
+		PrintErrorThenExit(err.Error(), 2)
 	}
 }
 

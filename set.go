@@ -1,16 +1,10 @@
 package main
 
-import (
-	"fmt"
-	"os"
-
-	"github.com/liberty-org/cli/utils"
-)
+import "github.com/liberty-org/cli/utils"
 
 func ExecuteSet(args []string) {
 	if len(args) <= 3 {
-		fmt.Println("Insufficient args to liberty setver")
-		os.Exit(2)
+		utils.PrintErrorThenExit("Insufficient args to liberty set", 1)
 	}
 
 	packageNameFull := args[2]
