@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 const (
@@ -10,11 +11,13 @@ const (
 )
 
 func main() {
+	utils.PrintClear()
+	utils.PrintHeader()
 
 	if !SubCommandsExist() {
-		fmt.Println("Insufficient number of subcommands supplied")
-		os.Exit(2)
+		utils.PrintErrorThenExit("Insufficient number of subcommands supplied", 2)
 	}
 
 	ParseSubCommands(os.Args)
+	utils.PrintPadding()
 }

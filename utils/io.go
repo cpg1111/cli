@@ -2,7 +2,6 @@ package utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
 )
@@ -37,8 +36,7 @@ func pathInCwd(relativePath string) string {
 func ReadRepoDefinitions() []Repository {
 	repoDefFile, err := ioutil.ReadFile(pathInCwd(RepoDefFile)) //Change to be a global file
 	if err != nil {
-		fmt.Println("Could not find valid repository definitions")
-		os.Exit(2)
+		PrintErrorThenExit("Could not find valid repository definitions", 2)
 	}
 
 	var repoDef []Repository
@@ -50,8 +48,7 @@ func ReadRepoDefinitions() []Repository {
 func ReadLibertyData() LibertyData {
 	libFile, err := ioutil.ReadFile(pathInCwd(LibertyFile))
 	if err != nil {
-		fmt.Println("Could not find valid liberty file")
-		os.Exit(2)
+		PrintErrorThenExit("There was a problem reading your Liberty file", 2)
 	}
 
 	var libertyData LibertyData
@@ -65,11 +62,11 @@ func ReadLibertyData() LibertyData {
 func (libertyData *LibertyData) GenerateLibertyFile() {
 	jsonData, marshalErr := json.MarshalIndent(libertyData, "", "\t")
 	if marshalErr != nil {
-		panic(marshalErr)
+		PrintErrorThenExit(marshalErr.Error(), 2)
 	}
 
 	if err := ioutil.WriteFile(LibertyFile, jsonData, os.ModePerm); err != nil {
-		panic(err)
+		PrintErrorThenExit(err.Error(), 2)
 	}
 }
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
@@ -10,8 +9,7 @@ import (
 
 func ExecuteRemove(subCmdArgs []string) {
 	if len(subCmdArgs) <= 2 {
-		fmt.Println("Insufficient args to liberty remove")
-		os.Exit(2)
+		utils.PrintErrorThenExit("Insufficient args to liberty remove", 1)
 	}
 
 	pathArg := subCmdArgs[2]

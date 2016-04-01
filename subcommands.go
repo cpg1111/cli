@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/liberty-org/cli/utils"
 )
 
 const (
@@ -39,8 +40,7 @@ func ParseSubCommands(subCmdArgs []string) {
 	case setCmd:
 		setCommand(subCmdArgs)
 	default:
-		fmt.Println("Liberty does not recognise this command")
-		os.Exit(2)
+		utils.PrintErrorThenExit("Liberty does not recognise this command", 1)
 	}
 }
 

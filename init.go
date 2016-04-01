@@ -16,8 +16,7 @@ func ExecuteInit(args []string) {
 	scanner := bufio.NewScanner(os.Stdin)
 	var libertyData utils.LibertyData
 
-	fmt.Println("*** Welcome to Liberty! ***")
-	fmt.Println("We are going to ask you a few questions about your project.")
+	utils.PrintInfo("We are going to ask you a few questions about your project.")
 	fmt.Print("Is that okay? (Y/N): ")
 
 	shouldAskQuestions := requestPermission(scanner)
@@ -35,7 +34,10 @@ func ExecuteInit(args []string) {
 		libertyData.Dependencies = make([]utils.Dependency, 1)
 	}
 
+	utils.PrintInfo("Generating Liberty File")
 	libertyData.GenerateLibertyFile()
+
+	utils.PrintSuccess("Operation Completed. Welcome to Liberty!")
 }
 
 // Fetches input and handles any errors

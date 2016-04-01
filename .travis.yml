@@ -13,6 +13,7 @@ before_install:
   - make install
   - go install
   - cd $TRAVIS_BUILD_DIR
+  - go get github.com/fatih/color
 
 
 script:
